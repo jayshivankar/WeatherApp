@@ -21,6 +21,8 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -56,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
-                        TODO("Not yet implemented")
+                         //TODO("Not yet implemented")
                     }
 
                     override fun onPermissionRationaleShouldBeShown(
@@ -91,7 +93,12 @@ class MainActivity : AppCompatActivity() {
     }
     private fun getLocationWeatherDetails(){
         if (Constants.isNetworkAvailable(this)){
-            Toast.makeText(this, "You are connected to the internet.", Toast.LENGTH_SHORT).show()
+            val retrofit : Retrofit = Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+
         }else{
             Toast.makeText(this, "You are not connected to the internet.", Toast.LENGTH_SHORT).show()
         }

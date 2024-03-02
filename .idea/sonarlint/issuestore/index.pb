@@ -7,3 +7,17 @@ h
 8app/src/main/java/com/example/weatherapp/MainActivity.kt,4/8/488e72b491bfa7e52b67a8a41ffb2e2e3c35856b
 e
 5app/src/main/java/com/example/weatherapp/Constants.kt,d/f/df68d8ca6570bca289b4c9edb6157ad40bb8b373
+q
+Aapp/src/main/java/com/example/weatherapp/Model/WeatherResponse.kt,7/e/7e5333f0a34a36c771fb8122f5f7d0919b4b49df
+g
+7app/src/main/java/com/example/weatherapp/Model/Coord.kt,e/7/e7df14d5721dbb8a50280bd072b0abb88e044771
+i
+9app/src/main/java/com/example/weatherapp/Model/Weather.kt,6/7/671677f5555121a0ab62cf42341df153874a9c21
+f
+6app/src/main/java/com/example/weatherapp/Model/Main.kt,b/9/b9c4775a0274fdcd90e9e6481b2bef85ada09bfa
+f
+6app/src/main/java/com/example/weatherapp/Model/Wind.kt,c/a/cab2b7deb61b2d1409b9e6e4eef2275ecfc6def2
+h
+8app/src/main/java/com/example/weatherapp/Model/Clouds.kt,d/5/d58ae334612505e326797acd6fd94b2e0ff4cae9
+e
+5app/src/main/java/com/example/weatherapp/Model/Sys.kt,a/9/a9c0e00301f0b6c7c677d8c7464eafc79be91514
