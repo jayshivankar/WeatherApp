@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.weatherapp.Model.WeatherResponse
@@ -31,8 +32,24 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 class MainActivity : AppCompatActivity() {
+    var tv_main: TextView = findViewById(R.id.tv_main)
+    var tv_main_description: TextView = findViewById(R.id.tv_main_description)
+    var tv_temp: TextView = findViewById(R.id.tv_temp)
+    var tv_sunrise_time: TextView = findViewById(R.id.tv_sunrise_time)
+    var tv_sunset_time: TextView = findViewById(R.id.tv_sunset_time)
+    var tv_humidity: TextView = findViewById(R.id.tv_humidity)
+    var tv_min: TextView = findViewById(R.id.tv_min)
+    var tv_max: TextView = findViewById(R.id.tv_max)
+    var tv_speed: TextView = findViewById(R.id.tv_speed)
+    var tv_name: TextView = findViewById(R.id.tv_name)
+    var tv_country: TextView = findViewById(R.id.tv_country)
+
 
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
     private var mProgressDialog: Dialog? = null
@@ -121,6 +138,7 @@ class MainActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         hideProgressDialog() // Hide the progress dialog
                         val weatherList: WeatherResponse? = response.body()
+                        setupUI(weatherList!!)
                         Log.i("Response Result", "$weatherList")
                     } else {
                         val rc = response.code()
@@ -173,6 +191,39 @@ class MainActivity : AppCompatActivity() {
             mProgressDialog?.dismiss()
         }
     }
+    @SuppressLint("SetTextI18n")
+    private fun setupUI(weatherList: WeatherResponse) {
+        for (i in weatherList.weather.indices) {
+            Log.i("Weather Name", weatherList.weather.toString())
+
+            tv_main.text = weatherList.weather[i].main
+            tv_main_description.text = weatherList.weather[i].description
+            tv_temp.text = weatherList.main.temp.toString() + getUnit(application.resources.configuration.locales.toString())
+            tv_humidity.text = weatherList.main.humidity.toString() + " per cent"
+            tv_min.text =   weatherList.main.temp_min.toString() + " min "
+            tv_max.text =   weatherList.main.temp_max.toString() + " max "
+            tv_speed.text = weatherList.wind.speed.toString()
+            tv_name.text = weatherList.name
+            tv_country.text = weatherList.sys.country
+            tv_sunrise_time.text = unixTime(weatherList.sys.sunrise)
+            tv_sunset_time.text = unixTime(weatherList.sys.sunset)
+
+        }
+    }
+    private fun getUnit(value:String):String?{
+        var value = "°C"
+        if("US" == value || "LR" == value || "MM" == value){
+            value = "°F"
+        }
+        return value
+    }
+    private fun unixTime(timex:Long):String?{
+        val date = Date(timex*1000L)
+        val sdf = SimpleDateFormat("HH:mm", Locale.UK)
+        sdf.timeZone = TimeZone.getDefault()
+        return sdf.format(date)
+    }
+
 }
 
 
