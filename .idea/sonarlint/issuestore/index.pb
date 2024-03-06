@@ -25,3 +25,5 @@ r
 Bapp/src/main/java/com/example/weatherapp/Network/WeatherService.kt,d/6/d651b62d5f2bfbd06def172f97c82bfefd9e42b1
 Y
 )app/src/main/res/layout/activity_main.xml,7/6/76b07e40f24cce093536731477540f12e7da3cb6
+@
+build.gradle.kts,d/b/dbcff70658daf80b53ce624f6adcaa529df5ed8d
